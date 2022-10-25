@@ -37,6 +37,14 @@ public abstract class CommonService {
         return responseToGetRq;
     }
 
+    protected Response getRequest2(String uri) {
+        Log.info("Sending the get request to the Uri" + prepareUri.apply(uri));
+        Response responseToGetRq =  requestSpecification.expect().statusCode(HttpStatus.SC_NOT_FOUND).log().ifError()
+                .when().get(prepareUri.apply(uri));
+        Log.info("Response body is " + responseToGetRq.asPrettyString());
+        return responseToGetRq;
+    }
+
     protected Response postRequest(String uri, Object body) {
         Log.info("Sending the post request to the Uri" + prepareUri.apply(uri));
         Response responseToPostRq = requestSpecification.body(body).expect().statusCode(HttpStatus.SC_OK).log().ifError()
