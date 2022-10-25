@@ -17,7 +17,11 @@ public class StoreOrderServiceSteps {
         return STORE_ORDER_SERVICE.postRequest(PLACE_ORDER, expectedOrder);
     }
 
-    public static Response getOrderById(int id) {
+    public static Response getStoreOrderById(int id) {
         return STORE_ORDER_SERVICE.getRequest(ORDER_BY_ID, id);
+    }
+
+    public static void deleteStoreOrderById(int id) {
+        STORE_ORDER_SERVICE.deleteRequest(ORDER_BY_ID, id);
     }
 }

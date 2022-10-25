@@ -46,7 +46,7 @@ public abstract class CommonService {
     }
 
     protected void deleteRequest(String uri) {
-        requestSpecification.expect().statusCode(HttpStatus.SC_NO_CONTENT).log().ifError()
+        requestSpecification.expect().statusCode(HttpStatus.SC_OK).log().ifError()
                 .when().delete(prepareUri.apply(uri));
     }
 }
