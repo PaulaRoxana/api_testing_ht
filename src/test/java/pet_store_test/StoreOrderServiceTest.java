@@ -1,16 +1,11 @@
 package pet_store_test;
 
-
+import io.restassured.response.Response;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pet_store.entities.StoreOrder;
 import pet_store.steps.StoreOrderServiceSteps;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 @Data
@@ -20,14 +15,21 @@ public class StoreOrderServiceTest {
     @Test
     public void createOrderTest() {
         StoreOrder expectedOrder = createOrderBody();
-        StoreOrder actualOrder = StoreOrderServiceSteps.createStoreOrder(expectedOrder);
-        Assert.assertEquals(actualOrder.getPetId(), expectedOrder.getPetId(), "Expected user does not have the expected name");
+        Response actualOrder = StoreOrderServiceSteps.createStoreOrder(expectedOrder);
+        Assert.assertEquals(actualOrder.as(StoreOrder.class).getPetId(), expectedOrder.getPetId(), "This is not the expected petId");
+    }
+
+    @Test
+    public void getUsersByIdTest() {
+           Response getStoreOrderById = StoreOrderServiceSteps.getOrderById(1780834899);
+        Assert.assertEquals(getStoreOrderById.getStatusCode(), 200, "This is not the expected status code");
     }
 
     private StoreOrder createOrderBody() {
+        Random random = new Random();
         return new StoreOrder()
-                .setId(4444)
-                .setPetId(333)
+                .setId(random.nextInt())
+                .setPetId(random.nextInt())
                 .setQuantity(1)
                 .setShipDate("2022-10-24T17:24:25.381Z")
                 .setStatus("placed")
@@ -36,12 +38,11 @@ public class StoreOrderServiceTest {
     }
     }
 
-//    private User createUser() {
-//        Random random = new Random();
-//        return new User()
-//                .setName("test" + random.nextInt())
-//                .setEmail("testEmail" + random.nextInt() + "@gmail.com")
-//                .setGender("Male")
-//                .setStatus("active");
-//    }
-//}
+//[main] INFO Test logger - Response body is {
+//        "id": 1780834899,
+//        "petId": -659380931,
+//        "quantity": 1,
+//        "shipDate": "2022-10-24T17:24:25.381+0000",
+//        "status": "placed",
+//        "complete": true
+//        }
