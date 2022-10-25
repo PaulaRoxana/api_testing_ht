@@ -21,8 +21,8 @@ public class StoreOrderServiceSteps {
         return STORE_ORDER_SERVICE.getRequest(ORDER_BY_ID, id);
     }
 
-    public static Response getStoreOrderById2(int id) {
-        return STORE_ORDER_SERVICE.getRequest2(ORDER_BY_ID, id);
+    public static Response getStoreOrderByIdAfterDelete(int id) {
+        return STORE_ORDER_SERVICE.getRequestAfterDelete(ORDER_BY_ID, id);
     }
 
     public static void deleteStoreOrderById(int id) {

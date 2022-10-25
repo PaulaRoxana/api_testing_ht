@@ -37,7 +37,7 @@ public abstract class CommonService {
         return responseToGetRq;
     }
 
-    protected Response getRequest2(String uri) {
+    protected Response getRequestAfterDelete(String uri) {
         Log.info("Sending the get request to the Uri" + prepareUri.apply(uri));
         Response responseToGetRq =  requestSpecification.expect().statusCode(HttpStatus.SC_NOT_FOUND).log().ifError()
                 .when().get(prepareUri.apply(uri));

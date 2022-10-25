@@ -9,7 +9,7 @@ import pet_store.steps.StoreOrderServiceSteps;
 
 import java.util.Random;
 
-@Data
+//@Data
 public class StoreOrderServiceTest {
 
 
@@ -28,18 +28,17 @@ public class StoreOrderServiceTest {
 
     @Test
     public void deleteStoreOrderTest() {
-      //  User createdUser = UserServiceSteps.createUser(createUserBody());
-        StoreOrder expectedOrder = createOrderBody();
+             StoreOrder expectedOrder = createOrderBody();
         Response actualOrder = StoreOrderServiceSteps.createStoreOrder(expectedOrder);
        StoreOrderServiceSteps.deleteStoreOrderById(actualOrder.as(StoreOrder.class).getId());
-        Response getStoreOrderById = StoreOrderServiceSteps.getStoreOrderById2(44);
+        Response getStoreOrderById = StoreOrderServiceSteps.getStoreOrderByIdAfterDelete(expectedOrder.getId());
         Assert.assertEquals(getStoreOrderById.getStatusCode(), 404, "This is not the expected status code");
     }
 
     private StoreOrder createOrderBody() {
         Random random = new Random();
         return new StoreOrder()
-                .setId(44)
+                .setId(1003)
                 .setPetId(100)
                 .setQuantity(1)
                 .setShipDate("2022-10-24T17:24:25.381Z")

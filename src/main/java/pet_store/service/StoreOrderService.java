@@ -27,8 +27,8 @@ public class StoreOrderService extends CommonService {
         return super.getRequest(uri.getUri(id));
     }
 
-    public Response getRequest2(UriTemplate uri, int id) {
-        return super.getRequest2(uri.getUri(id));
+    public Response getRequestAfterDelete(UriTemplate uri, int id) {
+        return super.getRequestAfterDelete(uri.getUri(id));
     }
 
     public Response postRequest(UriTemplate uri, Object body) {
