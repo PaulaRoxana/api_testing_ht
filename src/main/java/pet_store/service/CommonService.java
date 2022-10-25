@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public abstract class CommonService {
-    private static final String BASE_URI = "https://petstore.swagger.io/v2/";
+    private static final String BASE_URI = "https://petstore.swagger.io/v2";
 
     private final Function<String, String> prepareUri = uri -> String.format("%s%s", BASE_URI, uri);
 
@@ -24,7 +24,7 @@ public abstract class CommonService {
 
     protected void setCommonParams() {
         Map<String, String> headers = new HashMap<>();
-        headers.put("Accept", "application/json");
+        headers.put("accept", "application/json");
         headers.put("Content-Type", "application/json");
         requestSpecification.headers(headers);
     }

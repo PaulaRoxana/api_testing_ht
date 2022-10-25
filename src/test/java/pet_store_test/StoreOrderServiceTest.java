@@ -19,18 +19,17 @@ public class StoreOrderServiceTest {
 
     @Test
     public void createOrderTest() {
-        StoreOrder expectedOrder = createOrder();
+        StoreOrder expectedOrder = createOrderBody();
         StoreOrder actualOrder = StoreOrderServiceSteps.createStoreOrder(expectedOrder);
         Assert.assertEquals(actualOrder.getPetId(), expectedOrder.getPetId(), "Expected user does not have the expected name");
     }
 
-    private StoreOrder createOrder() {
-        Random rand = new Random();
+    private StoreOrder createOrderBody() {
         return new StoreOrder()
-                .setId(rand.nextInt())
-                .setPetId(rand.nextInt())
+                .setId(4444)
+                .setPetId(333)
                 .setQuantity(1)
-                .setShipDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                .setShipDate("2022-10-24T17:24:25.381Z")
                 .setStatus("placed")
                 .setComplete(true);
 
