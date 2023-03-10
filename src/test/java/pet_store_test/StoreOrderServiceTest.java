@@ -1,7 +1,6 @@
 package pet_store_test;
 
 import io.restassured.response.Response;
-import lombok.Data;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pet_store.entities.StoreOrder;
